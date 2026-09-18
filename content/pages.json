@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "pg-1",
+    "path": "/home",
+    "type": "page",
+    "title": "Home",
+    "seoTitle": "Mobile Windscreen Replacement Sydney | Windscreen Replacers",
+    "seoDescription": "Sydney's mobile windscreen and auto glass specialists. Repair and replacement at home, work or roadside across Sydney metro. Open 24 hours, 7 days.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "updatedAt": "2026-09-18T02:01:05.298Z",
+    "updatedBy": "joshua",
+    "createdAt": "2026-09-18T02:01:05.298Z",
+    "createdBy": "joshua"
+  }
+]
