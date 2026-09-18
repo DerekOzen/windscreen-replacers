@@ -1,7 +1,7 @@
 [
   {
     "id": "pg-1",
-    "path": "/home",
+    "path": "/",
     "type": "page",
     "title": "Home",
     "seoTitle": "Mobile Windscreen Replacement Sydney | Windscreen Replacers",
@@ -10,9 +10,10 @@
     "headerPartId": "header-1",
     "footerPartId": "footer-1",
     "status": "published",
-    "updatedAt": "2026-09-18T02:01:29.820Z",
+    "updatedAt": "2026-09-18T02:01:54.403Z",
     "updatedBy": "joshua",
     "createdAt": "2026-09-18T02:01:05.298Z",
-    "createdBy": "joshua"
+    "createdBy": "joshua",
+    "isHome": true
   }
 ]
