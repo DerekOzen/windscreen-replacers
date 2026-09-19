@@ -6,7 +6,7 @@
 // the mockup carries its own. Header/footer may be shared "parts" wrapped here.
 import fs from "fs";
 import path from "path";
-import { JsonLd } from "@/components/schema";
+import { stripJsonLd } from "@/components/schema";
 import { renderHeaderLayout, headerLayoutCss, hasDeviceOverrides, deviceLayout, deviceVisibilityCss, type HeaderLayout } from "@/components/header-layout";
 import { renderReusable, type Reusable } from "@/components/reusables";
 import { renderSidebar, type Sidebar } from "@/components/sidebars";
@@ -43,6 +43,153 @@ const SITE_MENUS: any[] = (() => {
   try { const d = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content/menus.json"), "utf8")); return Array.isArray(d) ? d : []; }
   catch { return []; }
 })();
+
+// ── Dynamic blog list ────────────────────────────────────────────────────────
+// The list of published blog posts (type "post"), newest first, read at build time.
+// The blog index page renders these as cards — so adding a post makes it appear at the
+// top automatically on the next rebuild, and every post is shown. Card data is fully
+// automatic: image = the post's first image, date = its publish/edit date, excerpt =
+// the SEO meta description (else the first line of text), category = its category.
+type BlogPost = { title: string; href: string; date: number; dateLabel: string; excerpt: string; category: string; image: string };
+function _blFmtDate(iso: string): string {
+  const d = new Date(iso); if (isNaN(d.getTime())) return "";
+  try { return d.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" }); } catch { return ""; }
+}
+function _blFirstImg(html: string): string { const m = /<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/i.exec(html || ""); return m ? m[1] : ""; }
+function _blText(html: string): string { return String(html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); }
+function _blBodyHtml(p: any): string {
+  if (Array.isArray(p.blocks) && p.blocks.length) return p.blocks.map((b: any) => (b && b.props && b.props.html) || "").join(" ");
+  try { const b = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content/pages/" + p.id + ".json"), "utf8")); return Array.isArray(b.blocks) ? b.blocks.map((x: any) => (x && x.props && x.props.html) || "").join(" ") : ""; }
+  catch { return ""; }
+}
+const SITE_POSTS: BlogPost[] = (() => {
+  try {
+    const idx = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content/pages.json"), "utf8"));
+    const arr = Array.isArray(idx) ? idx : [];
+    const posts = arr.filter((p: any) => p && p.type === "post" && p.status === "published" && !p.isHome && p.path && !p.noindex);
+    const out: BlogPost[] = posts.map((p: any) => {
+      const bodyHtml = _blBodyHtml(p);
+      const iso = p.updatedAt || p.createdAt || "";
+      const slug = String(p.path).replace(/^\/+|\/+$/g, "");
+      const excerpt = (p.seoDescription && String(p.seoDescription).trim()) ? String(p.seoDescription).trim() : _blText(bodyHtml).slice(0, 160);
+      return { title: p.seoTitle || p.title || "Untitled", href: slug ? "/" + slug + "/" : "/", date: iso ? (Date.parse(iso) || 0) : 0, dateLabel: _blFmtDate(iso), excerpt, category: p.category || "Blog", image: _blFirstImg(bodyHtml) };
+    });
+    out.sort((a, b) => b.date - a.date);
+    return out;
+  } catch { return []; }
+})();
+function _blEsc(s: string): string { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function renderBlogList(posts: BlogPost[]): { html: string; css: string } {
+  if (!posts.length) return { html: "", css: "" };
+  const cards = posts.map((p) =>
+    `<a class="nifty-bl-card" href="${_blEsc(p.href)}">` +
+      `<span class="nifty-bl-imgwrap">${p.image ? `<img class="nifty-bl-img" src="${_blEsc(p.image)}" alt="${_blEsc(p.title)}" loading="lazy">` : ""}</span>` +
+      `<span class="nifty-bl-body">` +
+        (p.category ? `<span class="nifty-bl-cat">${_blEsc(p.category)}</span>` : "") +
+        `<span class="nifty-bl-title">${_blEsc(p.title)}</span>` +
+        (p.dateLabel ? `<span class="nifty-bl-date">${_blEsc(p.dateLabel)}</span>` : "") +
+        (p.excerpt ? `<span class="nifty-bl-excerpt">${_blEsc(p.excerpt)}</span>` : "") +
+        `<span class="nifty-bl-more">Read more &rarr;</span>` +
+      `</span>` +
+    `</a>`
+  ).join("");
+  const css =
+    `.nifty-bloglist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;width:100%;margin:0}` +
+    `.nifty-bl-card{display:flex;flex-direction:column;overflow:hidden;border-radius:16px;background:#fff;border:1px solid rgba(0,0,0,.08);text-decoration:none;color:inherit;box-shadow:0 6px 22px rgba(0,0,0,.06);transition:transform .18s ease,box-shadow .18s ease}` +
+    `.nifty-bl-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.12)}` +
+    `.nifty-bl-imgwrap{display:block;aspect-ratio:16/10;overflow:hidden;background:#eef1f5}` +
+    `.nifty-bl-img{width:100%;height:100%;object-fit:cover;display:block}` +
+    `.nifty-bl-body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 22px}` +
+    `.nifty-bl-cat{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.02em;color:#1d4ed8;background:rgba(29,78,216,.10);padding:3px 10px;border-radius:999px}` +
+    `.nifty-bl-title{font-size:19px;font-weight:700;line-height:1.3;color:#0f172a}` +
+    `.nifty-bl-date{font-size:13px;color:#64748b}` +
+    `.nifty-bl-excerpt{font-size:14.5px;line-height:1.6;color:#475569;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}` +
+    `.nifty-bl-more{margin-top:6px;font-weight:600;color:#1d4ed8}`;
+  return { html: `<div class="nifty-bloglist">${cards}</div>`, css };
+}
+function _blNormHref(h: string): string { let s = String(h || "").trim().split(/[?#]/)[0]; s = s.replace(/^https?:\/\/[^/]+/i, ""); s = "/" + s.replace(/^\/+|\/+$/g, ""); return s.toLowerCase(); }
+const _BL_VOID = new Set(["img", "br", "hr", "input", "meta", "link", "source", "area", "base", "col", "embed", "param", "track", "wbr"]);
+// Best-effort: find the existing post-card grid (the smallest element enclosing the anchors
+// that link to real posts) and replace its contents with the live list. Returns null if it
+// can't isolate a clean container — so a page is NEVER broken; the marker slot remains the
+// guaranteed path. Only called for the blog INDEX page (gated by the caller).
+function autoInjectBlogGrid(html: string, posts: BlogPost[], listHtml: string): string | null {
+  const postPaths = new Set(posts.map((p) => _blNormHref(p.href)));
+  if (postPaths.size < 2) return null;
+  const aRe = /<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>/gi;
+  let m: RegExpExecArray | null; const anchorIdx: number[] = []; const distinct = new Set<string>();
+  while ((m = aRe.exec(html))) { const np = _blNormHref(m[1]); if (postPaths.has(np)) { anchorIdx.push(m.index); distinct.add(np); } }
+  if (distinct.size < 2) return null;
+  const firstA = anchorIdx[0], lastA = anchorIdx[anchorIdx.length - 1];
+  const tagRe = /<(\/?)([a-zA-Z][\w-]*)\b[^>]*?(\/?)>/g;
+  const stack: { tag: string; contentStart: number }[] = [];
+  let best: { contentStart: number; contentEnd: number } | null = null;
+  let t: RegExpExecArray | null;
+  while ((t = tagRe.exec(html))) {
+    const closing = t[1] === "/"; const tag = t[2].toLowerCase(); const selfClose = t[3] === "/";
+    if (!closing) { if (_BL_VOID.has(tag) || selfClose) continue; stack.push({ tag, contentStart: tagRe.lastIndex }); }
+    else {
+      for (let i = stack.length - 1; i >= 0; i--) {
+        if (stack[i].tag === tag) {
+          const el = stack[i]; stack.length = i; const contentEnd = t.index;
+          if (el.contentStart <= firstA && contentEnd >= lastA) {
+            if (!best || el.contentStart > best.contentStart) best = { contentStart: el.contentStart, contentEnd };
+          }
+          break;
+        }
+      }
+    }
+  }
+  if (!best) return null;
+  return html.slice(0, best.contentStart) + listHtml + html.slice(best.contentEnd);
+}
+
+// Generic card-grid detector — for a blog page whose placeholder cards DON'T link to the
+// real posts (the common case on imported mockups). Finds the container whose direct
+// children are ≥3 repeated card-like elements that collectively carry images/links (a card
+// grid) and replaces its inner with the live list. Guards against wiping the page: it only
+// considers card-like child tags (article/div/a/li — never a section-list wrapper) and never
+// replaces a container larger than 70% of the body. Returns null if it finds no clean grid.
+const _BL_CARD_TAGS = new Set(["article", "div", "a", "li"]);
+function findCardGrid(html: string, listHtml: string): string | null {
+  const tagRe = /<(\/?)([a-zA-Z][\w-]*)\b[^>]*?(\/?)>/g;
+  const stack: { tag: string; contentStart: number; kids: Record<string, number> }[] = [];
+  let best: { score: number; start: number; end: number; len: number } | null = null;
+  let t: RegExpExecArray | null;
+  const cap = html.length * 0.7;
+  while ((t = tagRe.exec(html))) {
+    const closing = t[1] === "/"; const tag = t[2].toLowerCase(); const selfClose = t[3] === "/";
+    if (!closing) {
+      if (stack.length) { const top = stack[stack.length - 1]; top.kids[tag] = (top.kids[tag] || 0) + 1; }
+      if (_BL_VOID.has(tag) || selfClose) continue;
+      stack.push({ tag, contentStart: tagRe.lastIndex, kids: {} });
+    } else {
+      for (let i = stack.length - 1; i >= 0; i--) {
+        if (stack[i].tag === tag) {
+          const el = stack[i]; stack.length = i; const contentEnd = t.index;
+          let dom = 0, domTag = "";
+          for (const k in el.kids) { if (el.kids[k] > dom) { dom = el.kids[k]; domTag = k; } }
+          if (dom >= 3 && _BL_CARD_TAGS.has(domTag)) {
+            const len = contentEnd - el.contentStart;
+            if (len <= cap) {
+              const inner = html.slice(el.contentStart, contentEnd);
+              const imgs = (inner.match(/<img\b/gi) || []).length;
+              const links = (inner.match(/<a\b/gi) || []).length;
+              if (imgs >= 2 || links >= 3) {
+                // Image-bearing grids (real blog cards) always beat link-only lists.
+                const score = dom + (imgs >= 2 ? 1000 : 0);
+                if (!best || score > best.score || (score === best.score && len < best.len)) best = { score, start: el.contentStart, end: contentEnd, len };
+              }
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
+  if (!best) return null;
+  return html.slice(0, best.start) + listHtml + html.slice(best.end);
+}
 
 // Global theme (content/theme.json): named colours + fonts published as CSS variables
 // so var(--nifty-c-<id>) / var(--nifty-font-*) resolve site-wide. Read once at build.
@@ -86,6 +233,20 @@ function _secOverlayLayer(bg: any): string {
     return "linear-gradient(" + (bg.overlayDir || "to bottom") + "," + a + "," + b + ")";
   }
   return "linear-gradient(" + a + "," + a + ")";
+}
+// Per-device visibility for a section (props.hide, set in the Live editor's Show/Hide).
+// display:none on the published page for each hidden device's screen range. Breakpoints are
+// kept identical to the dashboard's sectionHideCss so preview and live match exactly.
+function sectionHideCss(cls: string, hide: any): string {
+  if (!hide || typeof hide !== "object") return "";
+  const out: string[] = [];
+  if (hide.mobile) out.push("@media (max-width:640px){." + cls + "{display:none!important}}");
+  if (hide.tablet) out.push("@media (min-width:641px) and (max-width:1024px){." + cls + "{display:none!important}}");
+  if (hide.desktop) out.push("@media (min-width:1025px){." + cls + "{display:none!important}}");
+  return out.join("");
+}
+function anyDeviceHidden(hide: any): boolean {
+  return !!(hide && typeof hide === "object" && (hide.desktop || hide.tablet || hide.mobile));
 }
 function sectionBgCss(bg: any): string {
   if (!bg || typeof bg !== "object") return "";
@@ -180,7 +341,9 @@ type MockupPg = {
   blocks?: Block[];
   headerPartId?: string | null;
   footerPartId?: string | null;
-  type?: string;               // page type (service/industry/location/…) — for sidebar binding
+  type?: string;               // page type (service/industry/location/post/…) — for sidebar binding + blog index detection
+  path?: string;               // page path (e.g. "/blogs/") — used to auto-detect the blog index page
+  isBlogIndex?: boolean;       // explicitly flagged in the dashboard as THE blog listing page
   sidebarId?: string | null;   // explicit sidebar template, or "__none__" to force none
   _schemas?: Array<{ type?: string; data?: Record<string, unknown> }>;
 };
@@ -214,7 +377,7 @@ const PART_NONE = "__none__";
 // to name/email/phone/suburb/service/message, and any extra fields are passed too.
 const NIFTY_FORM_SCRIPT = `
 (function(){
-  var EP = "https://nifty-websites-dashboard.web-528.workers.dev/admin/api/lead";
+  var EP = "https://portal.niftywebsites.ai/admin/api/lead";
   function norm(k){ return String(k||"").toLowerCase().replace(/[^a-z0-9]/g,""); }
   var MAP = {
     name:["name","fullname","yourname","contactname","firstname"],
@@ -293,7 +456,26 @@ const NIFTY_FORM_SCRIPT = `
       // Leads → Page column. The cross-origin POST reduces the Referer to just the
       // domain, so we send the full page URL explicitly here.
       try { data.page = String(window.location.href || "").split("#")[0]; } catch(_e){}
-      fetch(EP, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(data) })
+      // If the visitor attached a file, send everything as multipart so the file reaches
+      // the dashboard (and shows on the lead). Otherwise send compact JSON exactly as
+      // before. Any problem building the multipart request falls back to JSON, so a lead
+      // is NEVER blocked by an attachment issue.
+      var req = null;
+      try {
+        var _files = form.querySelectorAll('input[type="file"]'); var _hasFile = false;
+        for (var _fi=0; _fi<_files.length; _fi++){ if (_files[_fi].files && _files[_fi].files.length){ _hasFile = true; break; } }
+        if (_hasFile){
+          var _fd = new FormData();
+          for (var _dk in data){ if (String(data[_dk])!=="[object File]") _fd.append(_dk, data[_dk]); }
+          for (var _fj=0; _fj<_files.length; _fj++){
+            var _inp=_files[_fj], _fn=_inp.getAttribute("name")||"attachment";
+            for (var _fk=0; _fk<_inp.files.length; _fk++){ _fd.append(_fn, _inp.files[_fk], _inp.files[_fk].name); }
+          }
+          req = fetch(EP, { method:"POST", body: _fd }); // browser sets the multipart boundary
+        }
+      } catch(_e){ req = null; }
+      if (!req){ req = fetch(EP, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(data) }); }
+      req
         .then(function(r){ return r.json().catch(function(){ return { ok:true }; }); })
         .then(function(res){
           if (res && res.redirect){ window.location.href = res.redirect; return; }
@@ -335,7 +517,7 @@ const NIFTY_FORM_SCRIPT = `
   // hidden "cf-turnstile-response" token that the submit handler above already forwards,
   // and the lead endpoint verifies it. If Turnstile isn't enabled, this does nothing.
   (function(){
-    var CAP = "https://nifty-websites-dashboard.web-528.workers.dev/admin/api/captcha";
+    var CAP = "https://portal.niftywebsites.ai/admin/api/captcha";
     fetch(CAP).then(function(r){ return r.json(); }).then(function(cfg){
       if (!cfg || !cfg.enabled || !cfg.siteKey) return;
       var forms = document.querySelectorAll("form"), added = false;
@@ -414,6 +596,86 @@ const NIFTY_HEADER_SCRIPT = `
     apply();
     window.addEventListener('resize', apply, {passive:true});
   }
+})();
+`;
+
+// A slide-out / off-canvas panel imported with the original site (e.g. a "Get a Free
+// Quote" / "Quick Enquiry" sidebar) lives INSIDE the page body (.nifty-mockup). To keep a
+// hero's inner z-indexes off the sticky header we isolate .nifty-mockup (see HEADER_LIFT_CSS),
+// but that same isolation traps any position:fixed overlay in the body BELOW the header —
+// so at the top of the page (header visible) the panel appears stuck under the header bar,
+// while lower down (header auto-hidden) it looks fine. This is a pure stacking-context trap,
+// not a per-site HTML problem, so it's fixed here once for every page of every site.
+//
+// The fix, when such an overlay is open, drops the header beneath the body so the panel (and
+// its dimming backdrop) paint over everything — exactly "pop up over the top". The header is
+// restored the instant the overlay closes. A small runtime watcher decides when an overlay is
+// "open" so we never disturb the header for normal scrolling; it only reacts to large, edge-
+// anchored or full-screen fixed overlays (slide-outs and their backdrops), never to small
+// persistent widgets (chat bubbles, back-to-top) or anything already showing at page load.
+const NIFTY_OVERLAY_LIFT_CSS = `
+html.nifty-overlay-open .nifty-hpart{z-index:auto !important}
+`;
+const NIFTY_OVERLAY_LIFT_SCRIPT = `
+(function(){
+  var doc = document.documentElement;
+  var mockup = document.querySelector('.nifty-mockup');
+  if(!mockup) return;
+  if(!document.querySelector('.nifty-hpart')) return;
+  var CLS = 'nifty-overlay-open';
+  var cands = [];
+  var baseIgnore = [];
+  var scheduled = false;
+  function vw(){ return window.innerWidth || doc.clientWidth || 0; }
+  function vh(){ return window.innerHeight || doc.clientHeight || 0; }
+  function isFixed(el){ try{ return getComputedStyle(el).position === 'fixed'; }catch(e){ return false; } }
+  function has(list, el){ for(var i=0;i<list.length;i++){ if(list[i]===el) return true; } return false; }
+  function pushCand(el){ if(!has(cands, el)) cands.push(el); }
+  function collect(root){
+    if(!root || root.nodeType !== 1) return;
+    if(isFixed(root)) pushCand(root);
+    var all = root.querySelectorAll ? root.querySelectorAll('*') : [];
+    for(var i=0;i<all.length;i++){ if(isFixed(all[i])) pushCand(all[i]); }
+  }
+  function isActive(el){
+    var cs; try{ cs = getComputedStyle(el); }catch(e){ return false; }
+    if(cs.position !== 'fixed') return false;
+    if(cs.display === 'none' || cs.visibility === 'hidden') return false;
+    if(parseFloat(cs.opacity || '1') < 0.05) return false;
+    var r = el.getBoundingClientRect();
+    if(r.width < 2 || r.height < 2) return false;
+    var W = vw(), H = vh();
+    if(r.right <= 0 || r.bottom <= 0 || r.left >= W || r.top >= H) return false;
+    var bigBoth = (r.width >= W*0.5) && (r.height >= H*0.5);
+    var tallEdge = (r.height >= H*0.6) && (r.left <= 2 || r.right >= W-2);
+    return bigBoth || tallEdge;
+  }
+  function anyOpen(){
+    for(var i=0;i<cands.length;i++){
+      var el = cands[i];
+      if(!el || !document.contains(el)) continue;
+      if(has(baseIgnore, el)) continue;
+      if(isActive(el)) return true;
+    }
+    return false;
+  }
+  function apply(){ scheduled = false; if(anyOpen()) doc.classList.add(CLS); else doc.classList.remove(CLS); }
+  function raf(fn){ if(window.requestAnimationFrame){ window.requestAnimationFrame(fn); } else { setTimeout(fn, 16); } }
+  function schedule(){ if(scheduled) return; scheduled = true; raf(apply); }
+  collect(mockup);
+  for(var i=0;i<cands.length;i++){ if(isActive(cands[i])) baseIgnore.push(cands[i]); }
+  if(window.MutationObserver){
+    var mo = new MutationObserver(function(muts){
+      for(var i=0;i<muts.length;i++){ var m = muts[i]; if(m.addedNodes){ for(var j=0;j<m.addedNodes.length;j++){ collect(m.addedNodes[j]); } } }
+      schedule();
+    });
+    try{ mo.observe(document.body || doc, {subtree:true, childList:true, attributes:true, attributeFilter:['class','style','hidden','aria-hidden','open']}); }catch(e){}
+  }
+  window.addEventListener('click', schedule, true);
+  window.addEventListener('hashchange', schedule, false);
+  window.addEventListener('transitionend', schedule, true);
+  window.addEventListener('resize', schedule, {passive:true});
+  schedule();
 })();
 `;
 
@@ -544,7 +806,7 @@ function responsivePartCss(layout: HeaderLayout, scope: string): string {
   return per + "\n" + scopeCss(deviceVisibilityCss(), scope);
 }
 
-export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[] }) {
+export function MockupPage({ page, parts = [], suppressSchema = false }: { page: MockupPg; parts?: Part[]; suppressSchema?: boolean }) {
   const byId = (id?: string | null) => (id && id !== PART_NONE ? parts.find((p) => p.id === id) : undefined);
   const headerPart = byId(page.headerPartId);
   const footerPart = byId(page.footerPartId);
@@ -579,6 +841,12 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
     const html = (b.props?.html as string) || "";
     if (!html) return "";
     const bg = (b.props as any)?.bg;
+    // Per-device visibility: hide this section on the chosen devices' screen sizes. Needs a
+    // stable class on the section wrapper to target — so a hidden section is always wrapped.
+    const hide = (b.props as any)?.hide;
+    const hidden = anyDeviceHidden(hide);
+    const hideCls = hidden ? ` nifty-hide-${b.id}` : "";
+    if (hidden) secBgRules.push(sectionHideCss(`nifty-hide-${b.id}`, hide));
     // Video background: a real <video>/YouTube layer behind the content (CSS can't do
     // video). Wrapper becomes the positioning context; content is lifted above the video.
     if (bg && bg.type === "video" && String(bg.videoUrl || "").trim()) {
@@ -587,13 +855,18 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
       secBgRules.push(`.nifty-secvidw-${b.id}{position:relative;overflow:hidden}.nifty-secvidw-${b.id}>*:not(.nifty-secvid){position:relative;z-index:2}`);
       let cls = `nifty-secvidw-${b.id}`;
       if (bg.mode === "replace") { secBgRules.push(`.nifty-secbg-${b.id} *{background-image:none !important}.nifty-secbg-${b.id} > *{background-color:transparent !important}`); cls += ` nifty-secbg-${b.id}`; }
-      return `<div class="${cls}"${fill ? ` style="${fill}"` : ""}>${layer}${html}</div>`;
+      return `<div class="${cls}${hideCls}"${fill ? ` style="${fill}"` : ""}>${layer}${html}</div>`;
     }
     const s = sectionBgCss(bg);
-    if (!s) return html;
     const replace = bg && bg.mode === "replace";
+    if (!s) {
+      // No background. Still wrap in a hideable element when the section is hidden on a
+      // device; otherwise return the raw html unchanged (no extra wrapper).
+      return hidden ? `<div class="nifty-hide-${b.id}">${html}</div>` : html;
+    }
     if (replace) secBgRules.push(`.nifty-secbg-${b.id} *{background-image:none !important}.nifty-secbg-${b.id} > *{background-color:transparent !important}`);
-    return `<div${replace ? ` class="nifty-secbg-${b.id}"` : ""} style="${s}">${html}</div>`;
+    const bgCls = ((replace ? `nifty-secbg-${b.id}` : "") + hideCls).trim();
+    return `<div${bgCls ? ` class="${bgCls}"` : ""} style="${s}">${html}</div>`;
   }).filter(Boolean).join("\n"));
   const secBgCss = secBgRules.join("\n");
   const reuseCssText = reuseCss.join("\n");
@@ -612,6 +885,47 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
         /(<([a-zA-Z][a-zA-Z0-9]*)\b[^>]*\bdata-nifty-sidebar\b[^>]*>)([\s\S]*?)(<\/\2>)/,
         (_m, open, _tag, _inner, close) => open + out.html + close
       );
+    }
+  }
+
+  // Dynamic blog list: on the blog listing page, render the live post grid (every published
+  // post, newest first). A page counts as the blog listing page when ANY of these is true:
+  //   • it's flagged "This is the blog listing page" in the dashboard (page.isBlogIndex) —
+  //     the reliable, explicit signal;
+  //   • it carries a data-nifty-blog marker element (manual placement); or
+  //   • it auto-detects as one (a non-post page whose path is /blog or /blogs).
+  // Then the grid is placed by the first of these that works:
+  //   1) replace the inner of a data-nifty-blog marker element (exact, if present);
+  //   2) replace the card grid whose cards already link to real posts;
+  //   3) replace a generic repeated-card grid (placeholder cards that link nowhere real);
+  //   4) if the page is EXPLICITLY flagged, append the grid so posts always show even when
+  //      no existing grid could be found. Auto-detected/marker-less pages stay untouched if
+  //      nothing matched, so a page is never altered unexpectedly.
+  const isBlogIndex =
+    page.isBlogIndex === true ||
+    /data-nifty-blog/.test(bodyWithSidebar) ||
+    (page.type !== "post" && /(^|\/)blogs?(\/|$)/i.test(String(page.path || "")));
+  let blogCssText = "";
+  if (isBlogIndex && SITE_POSTS.length) {
+    const bl = renderBlogList(SITE_POSTS);
+    if (bl.html) {
+      let done = false;
+      if (/data-nifty-blog/.test(bodyWithSidebar)) {
+        bodyWithSidebar = bodyWithSidebar.replace(
+          /(<([a-zA-Z][a-zA-Z0-9]*)\b[^>]*\bdata-nifty-blog\b[^>]*>)([\s\S]*?)(<\/\2>)/,
+          (_m, open, _tag, _inner, close) => open + bl.html + close
+        );
+        done = true;
+      }
+      if (!done) { const inj = autoInjectBlogGrid(bodyWithSidebar, SITE_POSTS, bl.html); if (inj) { bodyWithSidebar = inj; done = true; } }
+      if (!done) { const inj = findCardGrid(bodyWithSidebar, bl.html); if (inj) { bodyWithSidebar = inj; done = true; } }
+      // Guaranteed fallback: an explicitly-flagged page always shows its posts, even if we
+      // couldn't find a grid to replace — append the list into the page body.
+      if (!done && page.isBlogIndex === true) {
+        bodyWithSidebar = bodyWithSidebar + `<section class="nifty-bloglist-wrap">${bl.html}</section>`;
+        done = true;
+      }
+      if (done) blogCssText = bl.css + `.nifty-bloglist-wrap{padding:40px 20px;max-width:1200px;margin:0 auto}`;
     }
   }
 
@@ -640,10 +954,30 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
   // would make a header/footer wrapper a full-viewport-tall box (a huge blank band above
   // the content). Neutralise it: a part wrapper always sizes to its own content. This
   // must come AFTER the scoped CSS so it wins.
-  const partReset = (scope: string) => `.${scope}{min-height:0 !important;height:auto !important}`;
+  // Also force overflow:visible: the scoped page `body` rule carries `overflow-x:hidden`,
+  // which on the (now content-height) wrapper clips anything the header/footer overflows —
+  // e.g. a mega dropdown that drops below the header (top:100%). The wrapper must never clip.
+  const partReset = (scope: string) => `.${scope}{min-height:0 !important;height:auto !important;overflow:visible !important}`;
+  // Header parts sit above the page body and can hold a slide-in mobile menu. Two failures
+  // that show up on imported mockups, both fixed here globally:
+  //  1) "Header behind the hero." A hero section's inner z-indexes (e.g. .hero-grid z-index:2)
+  //     leak into the root stacking context because the content region never isolates, so they
+  //     can paint over a sticky header. We contain them by isolating the body wrapper
+  //     (.nifty-mockup) and lift the whole header part above it (position:relative;z-index).
+  //  2) "Mobile menu doesn't open / opens as a tiny sliver." A backdrop-filter / filter /
+  //     transform / perspective on the <header> (a frosted-glass bar is the usual cause) makes
+  //     the header the containing block for the position:fixed mobile menu, trapping the menu
+  //     inside the short header box instead of filling the screen. We neutralise those triggers
+  //     on the header and its bars — but only below desktop, so a desktop header keeps its blur.
+  const HEADER_LIFT_CSS = ".nifty-mockup{isolation:isolate}";
+  const headerStack = (scope: string) =>
+    `.${scope}{position:relative;z-index:1000}` +
+    `@media (max-width:1200px){.${scope} header,.${scope} header>*{` +
+    `-webkit-backdrop-filter:none !important;backdrop-filter:none !important;` +
+    `filter:none !important;transform:none !important;perspective:none !important;will-change:auto !important}}`;
   const partCssPieces: string[] = [];
   if (headerPart && norm(headerPart.css) && norm(headerPart.css) !== pageNorm) {
-    partCssPieces.push(scopeCss(headerPart.css as string, "." + headerScope) + "\n" + partReset(headerScope));
+    partCssPieces.push(scopeCss(headerPart.css as string, "." + headerScope) + "\n" + partReset(headerScope) + "\n" + HEADER_LIFT_CSS + "\n" + headerStack(headerScope));
   }
   if (footerPart && norm(footerPart.css) && norm(footerPart.css) !== pageNorm) {
     partCssPieces.push(scopeCss(footerPart.css as string, "." + footerScope) + "\n" + partReset(footerScope));
@@ -654,7 +988,7 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
   // at least one behaviour is switched on, so a plain header is left completely untouched.
   const hs = (headerPart?.settings || {}) as HeaderSettings;
   const headerActive = !!(hs.sticky || hs.autoHide || hs.transparent || hs.mobileMenu || (hs.shadow && hs.shadow !== "none"));
-  const headerClass = `nifty-part ${headerScope}${headerActive ? " nifty-header" : ""}`;
+  const headerClass = `nifty-part nifty-hpart ${headerScope}${headerActive ? " nifty-header" : ""}`;
 
   // Phase 2 structured header: when the linked header uses a zone layout, render THAT
   // instead of the captured mockup HTML, and inject its base CSS.
@@ -675,25 +1009,31 @@ export function MockupPage({ page, parts = [] }: { page: MockupPg; parts?: Part[
   // @import first, then the un-reset, then the scoped part CSS, then the page's own CSS,
   // then (only if a header behaviour is on) the small header-behaviour CSS, then (for a
   // structured header/footer) its base CSS.
-  const styleText = `${fontImports}\n${UNRESET}\n${THEME_CSS ? THEME_CSS + "\n" : ""}${partCss}\n${page.css || ""}${headerActive ? "\n" + NIFTY_HEADER_CSS : ""}${layoutCss ? "\n" + layoutCss : ""}${footerLayoutCss ? "\n" + footerLayoutCss : ""}${secBgCss ? "\n" + secBgCss : ""}${reuseCssText ? "\n" + reuseCssText : ""}${sidebarCssText ? "\n" + sidebarCssText : ""}`;
+  const styleText = `${fontImports}\n${UNRESET}\n${THEME_CSS ? THEME_CSS + "\n" : ""}${partCss}\n${page.css || ""}${headerActive ? "\n" + NIFTY_HEADER_CSS : ""}${headerPart ? "\n" + NIFTY_OVERLAY_LIFT_CSS : ""}${layoutCss ? "\n" + layoutCss : ""}${footerLayoutCss ? "\n" + footerLayoutCss : ""}${secBgCss ? "\n" + secBgCss : ""}${reuseCssText ? "\n" + reuseCssText : ""}${sidebarCssText ? "\n" + sidebarCssText : ""}${blogCssText ? "\n" + blogCssText : ""}`;
+
+  // When the page is suppressed (Custom Schema Generator), the dashboard's own page
+  // schema is skipped and any JSON-LD baked into the header/body/footer HTML is stripped,
+  // so only the injected custom graph remains on the page.
+  const headerOut = suppressSchema ? stripJsonLd(headerInnerHtml) : headerInnerHtml;
+  const bodyOut = suppressSchema ? stripJsonLd(bodyWithSidebar) : bodyWithSidebar;
+  const footerOut = suppressSchema ? stripJsonLd(footerInnerHtml) : footerInnerHtml;
 
   return (
     <>
-      {(page._schemas || []).map((b, i) =>
-        b && b.data && Object.keys(b.data).length ? (
-          <JsonLd key={i} data={{ "@context": "https://schema.org", ...b.data }} />
-        ) : null
-      )}
+      {/* Per-page schema (_schemas) is retired — the Custom Schema Generator (Bulk Import)
+          is the single source of truth. Its graph is injected by the page wrapper; here we
+          only strip any JSON-LD baked into the mockup HTML when suppression is on. */}
       <style dangerouslySetInnerHTML={{ __html: styleText }} />
       {headerPart ? (
-        <div className={headerClass} {...(headerActive ? { "data-nifty-header": JSON.stringify(hs) } : {})} dangerouslySetInnerHTML={{ __html: headerInnerHtml }} />
+        <div className={headerClass} {...(headerActive ? { "data-nifty-header": JSON.stringify(hs) } : {})} dangerouslySetInnerHTML={{ __html: headerOut }} />
       ) : null}
-      <div className="nifty-mockup" dangerouslySetInnerHTML={{ __html: bodyWithSidebar }} />
+      <div className="nifty-mockup" dangerouslySetInnerHTML={{ __html: bodyOut }} />
       {footerPart ? (
-        <div className={`nifty-part ${footerScope}`} dangerouslySetInnerHTML={{ __html: footerInnerHtml }} />
+        <div className={`nifty-part ${footerScope}`} dangerouslySetInnerHTML={{ __html: footerOut }} />
       ) : null}
       <script dangerouslySetInnerHTML={{ __html: NIFTY_FORM_SCRIPT }} />
       {headerActive ? <script dangerouslySetInnerHTML={{ __html: NIFTY_HEADER_SCRIPT }} /> : null}
+      {headerPart ? <script dangerouslySetInnerHTML={{ __html: NIFTY_OVERLAY_LIFT_SCRIPT }} /> : null}
     </>
   );
 }

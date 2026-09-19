@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
-import { JsonLd } from "@/components/schema";
+import { customSchemaFor, CustomSchemaScript } from "@/components/schema";
 import { Blocks } from "@/components/blocks";
 import { MockupPage } from "@/components/mockup-page";
 import { site } from "@/lib/site";
@@ -34,7 +34,7 @@ const pagesData = _allPages();
 
 type Pg = {
   path: string; status?: string; layout?: string; title: string; isHome?: boolean;
-  seoTitle?: string; seoDescription?: string; noindex?: boolean; css?: string; fonts?: string[];
+  seoTitle?: string; seoDescription?: string; noindex?: boolean; featuredImage?: string; featuredImageAlt?: string; css?: string; fonts?: string[];
   headerPartId?: string | null; footerPartId?: string | null;
   blocks?: Array<{ id?: string; type: string; props?: Record<string, any> }>;
   _schemas?: Array<{ type?: string; data?: Record<string, unknown> }>;
@@ -64,13 +64,27 @@ const HOME_CANONICAL = (() => { const b = (site.siteUrl || "").replace(/\/+$/, "
 
 const HOME_T = HOME_PAGE ? (HOME_PAGE.seoTitle || HOME_PAGE.title) : ((site as any).name || "Home");
 const HOME_D = HOME_PAGE ? (HOME_PAGE.seoDescription || "") : "";
+// Featured image → og:image / twitter:image for the homepage (absolute URL against the
+// real domain, or an already-absolute URL). Undefined when none is set.
+const HOME_OG_IMAGES = (() => {
+  const raw = (HOME_PAGE?.featuredImage || "").trim();
+  if (!raw) return undefined;
+  let url = raw;
+  if (!/^https?:\/\//i.test(raw)) {
+    const base = (site.siteUrl || "").replace(/\/+$/, "");
+    if (!base) return undefined;
+    url = base + "/" + raw.replace(/^\/+/, "");
+  }
+  const alt = (HOME_PAGE?.featuredImageAlt || HOME_T) as string;
+  return [{ url, ...(alt ? { alt } : {}) }];
+})();
 export const metadata = {
   title: HOME_T,
   description: HOME_D,
   ...(HOME_PAGE && HOME_PAGE.noindex ? { robots: { index: false, follow: true } } : {}),
   ...(HOME_CANONICAL ? { alternates: { canonical: HOME_CANONICAL } } : {}),
-  openGraph: { title: HOME_T, description: HOME_D, type: "website", ...(HOME_CANONICAL ? { url: HOME_CANONICAL } : {}) },
-  twitter: { card: "summary_large_image", title: HOME_T, description: HOME_D },
+  openGraph: { title: HOME_T, description: HOME_D, type: "website", ...(HOME_CANONICAL ? { url: HOME_CANONICAL } : {}), ...(HOME_OG_IMAGES ? { images: HOME_OG_IMAGES } : {}) },
+  twitter: { card: "summary_large_image", title: HOME_T, description: HOME_D, ...(HOME_OG_IMAGES ? { images: HOME_OG_IMAGES } : {}) },
 };
 
 function isMockup(p: Pg): boolean {
@@ -80,11 +94,19 @@ function isMockup(p: Pg): boolean {
 
 export default function Home() {
   if (HOME_PAGE) {
-    if (isMockup(HOME_PAGE)) return <MockupPage page={HOME_PAGE} parts={PARTS as any} />;
+    // Custom Schema Generator record for the homepage (path "/").
+    const csg = customSchemaFor("/");
+    if (isMockup(HOME_PAGE)) return (
+      <>
+        {csg ? <CustomSchemaScript record={csg} /> : null}
+        <MockupPage page={HOME_PAGE} parts={PARTS as any} suppressSchema={!!csg?.suppress} />
+      </>
+    );
     if (Array.isArray(HOME_PAGE.blocks) && HOME_PAGE.blocks.length) {
       return (
         <>
-          {(HOME_PAGE._schemas || []).map((b, i) => (b && b.data && Object.keys(b.data).length ? <JsonLd key={i} data={{ "@context": "https://schema.org", ...b.data }} /> : null))}
+          {/* Schema is managed by the Custom Schema Generator (Bulk Import) only. */}
+          {csg ? <CustomSchemaScript record={csg} /> : null}
           <SiteHeader />
           <main><Blocks blocks={HOME_PAGE.blocks} /></main>
           <SiteFooter />
