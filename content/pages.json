@@ -26,11 +26,12 @@
     "layout": "mockup",
     "headerPartId": "header-1",
     "footerPartId": "footer-1",
-    "status": "published",
+    "status": "deleted",
     "createdAt": "2026-09-21T00:47:36.060Z",
     "createdBy": "joshua",
-    "updatedAt": "2026-09-21T00:50:14.265Z",
-    "updatedBy": "joshua"
+    "updatedAt": "2026-09-22T02:08:49.162Z",
+    "updatedBy": "joshua",
+    "isHome": false
   },
   {
     "id": "pg-3",
