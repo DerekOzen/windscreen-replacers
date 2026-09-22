@@ -1,0 +1,128 @@
+[
+  {
+    "from": "/audi-windscreen-replacement",
+    "to": "/car-brands/audi-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/bmw-windscreen-replacement",
+    "to": "/car-brands/bmw-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/ford-windscreen-replacement",
+    "to": "/car-brands/ford-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/honda-windscreen-replacement",
+    "to": "/car-brands/honda-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/hyundai-windscreen-replacement",
+    "to": "/car-brands/hyundai-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/kia-windscreen-replacement",
+    "to": "/car-brands/kia-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/land-rover-windscreen-replacement",
+    "to": "/car-brands/land-rover-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/mazda-windscreen-replacement",
+    "to": "/car-brands/mazda-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/mercedes-windscreen-replacement",
+    "to": "/car-brands/mercedes-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/mitsubishi-windscreen-replacement",
+    "to": "/car-brands/mitsubishi-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/nissan-navara-windscreen-replacement",
+    "to": "/car-brands/nissan-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/nissan-windscreen-replacement",
+    "to": "/car-brands/nissan-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/subaru-windscreen-replacement",
+    "to": "/car-brands/subaru-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/ford-ranger-windscreen-replacement",
+    "to": "/car-brands/ford-ranger-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/toyota-hilux-windscreen-replacement",
+    "to": "/car-brands/toyota-hilux-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/car-side-window-replacement",
+    "to": "/services/car-side-window-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/rear-window-replacement",
+    "to": "/services/rear-window-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/truck-windscreen-replacement",
+    "to": "/services/truck-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/windscreen-chip-repair",
+    "to": "/services/windscreen-chip-repair",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/windscreen-seal-replacement",
+    "to": "/services/windscreen-seal-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/wiper-blade-replacement",
+    "to": "/services/wiper-blade-replacement",
+    "code": 301,
+    "at": "2026-09-22T00:01:20.478Z"
+  }
+]
