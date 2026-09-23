@@ -1,0 +1,17 @@
+{
+  "colors": [],
+  "fonts": {
+    "heading": "",
+    "body": "",
+    "button": ""
+  },
+  "backToTop": {
+    "enabled": true,
+    "position": "br",
+    "shape": "round",
+    "icon": "chevron",
+    "bg": "#ff5b05",
+    "fg": "#ffffff",
+    "size": 48
+  }
+}
