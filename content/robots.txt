@@ -1,26 +1,28 @@
 User-agent: *
+
 Allow: /
-Disallow: /thank-you/
- 
+
+Sitemap: https://windscreenreplacers.com.au/sitemap.xml
+
+# --- AI / LLM crawler rules ---
+
 User-agent: GPTBot
 Allow: /
- 
+
 User-agent: ChatGPT-User
 Allow: /
- 
-User-agent: OAI-SearchBot
-Allow: /
- 
+
 User-agent: ClaudeBot
 Allow: /
- 
-User-agent: PerplexityBot
+
+User-agent: anthropic-ai
 Allow: /
- 
+
 User-agent: Google-Extended
 Allow: /
- 
+
 User-agent: CCBot
 Allow: /
- 
-Sitemap: https://windscreenreplacers.com.au/sitemap.xml
+
+User-agent: PerplexityBot
+Allow: /
