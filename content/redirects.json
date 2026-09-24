@@ -124,5 +124,23 @@
     "to": "/services/wiper-blade-replacement",
     "code": 301,
     "at": "2026-09-22T00:01:20.478Z"
+  },
+  {
+    "from": "/does-mazda-windscreen-replacement-require-special-glass",
+    "to": "/car-brands/mazda-windscreen-replacement",
+    "code": 301,
+    "at": "2026-09-24T03:46:48.304Z"
+  },
+  {
+    "from": "/is-driving-with-a-cracked-rear-window-illegal",
+    "to": "/services/rear-window-replacement",
+    "code": 301,
+    "at": "2026-09-24T03:46:48.304Z"
+  },
+  {
+    "from": "/windscreen-replacement-cost-factors-sydney",
+    "to": "/windscreen-replacement-cost-sydney",
+    "code": 301,
+    "at": "2026-09-24T03:46:48.304Z"
   }
 ]
