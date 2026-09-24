@@ -1,10 +1,10 @@
 {
-  "name": "Your Business",
-  "tagline": "Quality you can trust",
-  "phone": "",
-  "email": "",
-  "areas": "",
-  "hoursWeek": "Mon–Fri 9am–5pm",
-  "hoursSat": "Closed",
-  "siteUrl": "https://windscreenreplacers.com.au"
+  "name": "Windscreen Replacers",
+  "tagline": "Sydney's Mobile Windscreen Specialists",
+  "phone": "0423 018 888",
+  "email": "info@windscreenreplacers.com.au",
+  "areas": "Sydney",
+  "hoursWeek": "Open 24 hours",
+  "hoursSat": "Open 24 hours",
+  "siteUrl": "https://windscreenreplacers.com.au/"
 }
