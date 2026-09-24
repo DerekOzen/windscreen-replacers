@@ -1,0 +1,771 @@
+{
+  "batches": [
+    {
+      "batchId": "csg-muewt59g-77m1",
+      "at": "2026-09-24T02:25:14.212Z",
+      "count": 190,
+      "changes": [
+        {
+          "path": "/",
+          "newRecordId": "SCHEMA-F01D3C7E"
+        },
+        {
+          "path": "/about-us",
+          "newRecordId": "SCHEMA-E8823776"
+        },
+        {
+          "path": "/contact-us",
+          "newRecordId": "SCHEMA-942ADE28"
+        },
+        {
+          "path": "/request-a-quote",
+          "newRecordId": "SCHEMA-B28E872A"
+        },
+        {
+          "path": "/privacy-policy",
+          "newRecordId": "SCHEMA-02A0F614"
+        },
+        {
+          "path": "/terms-and-conditions",
+          "newRecordId": "SCHEMA-D9E01396"
+        },
+        {
+          "path": "/services",
+          "newRecordId": "SCHEMA-6DA60C45"
+        },
+        {
+          "path": "/services/windscreen-replacement-sydney",
+          "newRecordId": "SCHEMA-5D239CC1"
+        },
+        {
+          "path": "/services/truck-windscreen-replacement",
+          "newRecordId": "SCHEMA-F168D956"
+        },
+        {
+          "path": "/services/windscreen-chip-repair",
+          "newRecordId": "SCHEMA-5B9F2E30"
+        },
+        {
+          "path": "/services/rear-window-replacement",
+          "newRecordId": "SCHEMA-7D4B9322"
+        },
+        {
+          "path": "/services/car-side-window-replacement",
+          "newRecordId": "SCHEMA-DFD3F9CC"
+        },
+        {
+          "path": "/services/windscreen-seal-replacement",
+          "newRecordId": "SCHEMA-074647AA"
+        },
+        {
+          "path": "/services/wiper-blade-replacement",
+          "newRecordId": "SCHEMA-F7E36192"
+        },
+        {
+          "path": "/services/fleet-windscreen-services",
+          "newRecordId": "SCHEMA-2D95B0C4"
+        },
+        {
+          "path": "/windscreen-replacement-cost-sydney",
+          "newRecordId": "SCHEMA-5D86F524"
+        },
+        {
+          "path": "/locations",
+          "newRecordId": "SCHEMA-D287AEC4"
+        },
+        {
+          "path": "/locations/nsw",
+          "newRecordId": "SCHEMA-63BD6027"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-albury",
+          "newRecordId": "SCHEMA-B9F797C2"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-artarmon",
+          "newRecordId": "SCHEMA-9BE67141"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-bayside",
+          "newRecordId": "SCHEMA-1F964B95"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-belmont",
+          "newRecordId": "SCHEMA-942C402B"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-blacktown",
+          "newRecordId": "SCHEMA-7CC3A854"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-blue-mountains",
+          "newRecordId": "SCHEMA-FA16AA3F"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-brooklyn",
+          "newRecordId": "SCHEMA-65D20146"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-brookvale",
+          "newRecordId": "SCHEMA-A6F252E7"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-campbelltown",
+          "newRecordId": "SCHEMA-0D04ED04"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-central-coast",
+          "newRecordId": "SCHEMA-89F594C2"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-cessnock",
+          "newRecordId": "SCHEMA-63B53515"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-cheltenham",
+          "newRecordId": "SCHEMA-227F837F"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-coffs-harbour",
+          "newRecordId": "SCHEMA-C75DE262"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-croydon",
+          "newRecordId": "SCHEMA-A4DE5B71"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-epping",
+          "newRecordId": "SCHEMA-B1395EE5"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-forbes",
+          "newRecordId": "SCHEMA-B314A2B1"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-forster",
+          "newRecordId": "SCHEMA-CC9A3E26"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-gosford",
+          "newRecordId": "SCHEMA-2B235128"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-griffith",
+          "newRecordId": "SCHEMA-E7069F36"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-hamilton",
+          "newRecordId": "SCHEMA-FB028CFB"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-hornsby",
+          "newRecordId": "SCHEMA-0E0865CD"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-hurstville",
+          "newRecordId": "SCHEMA-19800836"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-illawarra",
+          "newRecordId": "SCHEMA-CE887E8E"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-lake-macquarie",
+          "newRecordId": "SCHEMA-356F41DC"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-lismore",
+          "newRecordId": "SCHEMA-484F0734"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-liverpool",
+          "newRecordId": "SCHEMA-0DA172FD"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-macarthur",
+          "newRecordId": "SCHEMA-9816F638"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-maitland",
+          "newRecordId": "SCHEMA-AAE38D3F"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-morisset",
+          "newRecordId": "SCHEMA-EA3F5471"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-mount-druitt",
+          "newRecordId": "SCHEMA-A5A5C792"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-murwillumbah",
+          "newRecordId": "SCHEMA-C474DAC8"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-narellan",
+          "newRecordId": "SCHEMA-824C5441"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-newcastle",
+          "newRecordId": "SCHEMA-B4055381"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-newport",
+          "newRecordId": "SCHEMA-5586F583"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-northern-beaches",
+          "newRecordId": "SCHEMA-D0C066C1"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-north-shore",
+          "newRecordId": "SCHEMA-C1924795"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-parramatta",
+          "newRecordId": "SCHEMA-4528C471"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-penrith",
+          "newRecordId": "SCHEMA-105DF60F"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-port-macquarie",
+          "newRecordId": "SCHEMA-55065CD5"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-port-stephens",
+          "newRecordId": "SCHEMA-694CC0C8"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-prospect",
+          "newRecordId": "SCHEMA-7915FB1E"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-queanbeyan",
+          "newRecordId": "SCHEMA-E204BDC8"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-raymond-terrace",
+          "newRecordId": "SCHEMA-8BE6EEC3"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-richmond",
+          "newRecordId": "SCHEMA-D5749C96"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-rutherford",
+          "newRecordId": "SCHEMA-2ED2619A"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-scarborough",
+          "newRecordId": "SCHEMA-0E91FA62"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-shellharbour",
+          "newRecordId": "SCHEMA-0A70B4BE"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-smithfield",
+          "newRecordId": "SCHEMA-E609166B"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-southern-highlands",
+          "newRecordId": "SCHEMA-B070456E"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-spring-hill",
+          "newRecordId": "SCHEMA-ECCF0ABC"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-springwood",
+          "newRecordId": "SCHEMA-1FA46BA6"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-st-marys",
+          "newRecordId": "SCHEMA-A28A26B5"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-sunshine",
+          "newRecordId": "SCHEMA-EF0BF631"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-sutherland-shire",
+          "newRecordId": "SCHEMA-B53EF15B"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-swansea",
+          "newRecordId": "SCHEMA-77565515"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-tamworth",
+          "newRecordId": "SCHEMA-D6EE6357"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-taree",
+          "newRecordId": "SCHEMA-6002BBE5"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-tuggerah",
+          "newRecordId": "SCHEMA-421A07B7"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-tweed-heads",
+          "newRecordId": "SCHEMA-41289B2B"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-wellington",
+          "newRecordId": "SCHEMA-EEB6443A"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-windsor",
+          "newRecordId": "SCHEMA-4CB5065D"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-wollongong",
+          "newRecordId": "SCHEMA-5E09416E"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-woy-woy",
+          "newRecordId": "SCHEMA-B5A2CCE6"
+        },
+        {
+          "path": "/locations/nsw/windscreen-replacement-young",
+          "newRecordId": "SCHEMA-7ADED80B"
+        },
+        {
+          "path": "/car-brands",
+          "newRecordId": "SCHEMA-FDD0CAA0"
+        },
+        {
+          "path": "/car-brands/alfa-romeo-windscreen-replacement",
+          "newRecordId": "SCHEMA-0AF2BD53"
+        },
+        {
+          "path": "/car-brands/audi-windscreen-replacement",
+          "newRecordId": "SCHEMA-77DDFADD"
+        },
+        {
+          "path": "/car-brands/bmw-windscreen-replacement",
+          "newRecordId": "SCHEMA-02652051"
+        },
+        {
+          "path": "/car-brands/byd-windscreen-replacement",
+          "newRecordId": "SCHEMA-912D37B5"
+        },
+        {
+          "path": "/car-brands/chery-windscreen-replacement",
+          "newRecordId": "SCHEMA-D4E9DCC9"
+        },
+        {
+          "path": "/car-brands/chevrolet-windscreen-replacement",
+          "newRecordId": "SCHEMA-334C727B"
+        },
+        {
+          "path": "/car-brands/chrysler-windscreen-replacement",
+          "newRecordId": "SCHEMA-82A6E052"
+        },
+        {
+          "path": "/car-brands/citroen-windscreen-replacement",
+          "newRecordId": "SCHEMA-7228B950"
+        },
+        {
+          "path": "/car-brands/cupra-windscreen-replacement",
+          "newRecordId": "SCHEMA-8A626367"
+        },
+        {
+          "path": "/car-brands/daihatsu-windscreen-replacement",
+          "newRecordId": "SCHEMA-829702A7"
+        },
+        {
+          "path": "/car-brands/fiat-windscreen-replacement",
+          "newRecordId": "SCHEMA-047745C4"
+        },
+        {
+          "path": "/car-brands/ford-ranger-windscreen-replacement",
+          "newRecordId": "SCHEMA-C6AC8C90"
+        },
+        {
+          "path": "/car-brands/ford-windscreen-replacement",
+          "newRecordId": "SCHEMA-8D5A1A68"
+        },
+        {
+          "path": "/car-brands/geely-windscreen-replacement",
+          "newRecordId": "SCHEMA-4A25D60B"
+        },
+        {
+          "path": "/car-brands/genesis-windscreen-replacement",
+          "newRecordId": "SCHEMA-C5284A81"
+        },
+        {
+          "path": "/car-brands/gwm-windscreen-replacement",
+          "newRecordId": "SCHEMA-B77DEDB0"
+        },
+        {
+          "path": "/car-brands/holden-windscreen-replacement",
+          "newRecordId": "SCHEMA-D67C5E7C"
+        },
+        {
+          "path": "/car-brands/honda-windscreen-replacement",
+          "newRecordId": "SCHEMA-4161B0FB"
+        },
+        {
+          "path": "/car-brands/hyundai-windscreen-replacement",
+          "newRecordId": "SCHEMA-31876CFE"
+        },
+        {
+          "path": "/car-brands/isuzu-windscreen-replacement",
+          "newRecordId": "SCHEMA-A49F0B1A"
+        },
+        {
+          "path": "/car-brands/jaguar-windscreen-replacement",
+          "newRecordId": "SCHEMA-EE5DEE38"
+        },
+        {
+          "path": "/car-brands/jeep-windscreen-replacement",
+          "newRecordId": "SCHEMA-C89B3D84"
+        },
+        {
+          "path": "/car-brands/kia-windscreen-replacement",
+          "newRecordId": "SCHEMA-B2A19D0C"
+        },
+        {
+          "path": "/car-brands/land-rover-windscreen-replacement",
+          "newRecordId": "SCHEMA-A987067D"
+        },
+        {
+          "path": "/car-brands/ldv-windscreen-replacement",
+          "newRecordId": "SCHEMA-E25F6298"
+        },
+        {
+          "path": "/car-brands/lexus-windscreen-replacement",
+          "newRecordId": "SCHEMA-33C81167"
+        },
+        {
+          "path": "/car-brands/mahindra-windscreen-replacement",
+          "newRecordId": "SCHEMA-F3E7EEF2"
+        },
+        {
+          "path": "/car-brands/mazda-windscreen-replacement",
+          "newRecordId": "SCHEMA-FC3FC389"
+        },
+        {
+          "path": "/car-brands/mercedes-windscreen-replacement",
+          "newRecordId": "SCHEMA-6672DC36"
+        },
+        {
+          "path": "/car-brands/mg-windscreen-replacement",
+          "newRecordId": "SCHEMA-54D311FA"
+        },
+        {
+          "path": "/car-brands/mini-windscreen-replacement",
+          "newRecordId": "SCHEMA-C157364E"
+        },
+        {
+          "path": "/car-brands/mitsubishi-windscreen-replacement",
+          "newRecordId": "SCHEMA-25AF9B18"
+        },
+        {
+          "path": "/car-brands/nissan-windscreen-replacement",
+          "newRecordId": "SCHEMA-E86CFEEB"
+        },
+        {
+          "path": "/car-brands/peugeot-windscreen-replacement",
+          "newRecordId": "SCHEMA-7FC3A27D"
+        },
+        {
+          "path": "/car-brands/polestar-windscreen-replacement",
+          "newRecordId": "SCHEMA-3A1353A0"
+        },
+        {
+          "path": "/car-brands/porsche-windscreen-replacement",
+          "newRecordId": "SCHEMA-45FAA1DD"
+        },
+        {
+          "path": "/car-brands/ram-windscreen-replacement",
+          "newRecordId": "SCHEMA-01C7EF25"
+        },
+        {
+          "path": "/car-brands/renault-windscreen-replacement",
+          "newRecordId": "SCHEMA-77E08543"
+        },
+        {
+          "path": "/car-brands/skoda-windscreen-replacement",
+          "newRecordId": "SCHEMA-90C2DD84"
+        },
+        {
+          "path": "/car-brands/ssangyong-windscreen-replacement",
+          "newRecordId": "SCHEMA-64B31E66"
+        },
+        {
+          "path": "/car-brands/subaru-windscreen-replacement",
+          "newRecordId": "SCHEMA-64676E89"
+        },
+        {
+          "path": "/car-brands/suzuki-windscreen-replacement",
+          "newRecordId": "SCHEMA-B0F35BEE"
+        },
+        {
+          "path": "/car-brands/tesla-windscreen-replacement",
+          "newRecordId": "SCHEMA-0100549C"
+        },
+        {
+          "path": "/car-brands/toyota-hilux-windscreen-replacement",
+          "newRecordId": "SCHEMA-FB38B1AD"
+        },
+        {
+          "path": "/car-brands/toyota-windscreen-replacement",
+          "newRecordId": "SCHEMA-0B3AF2C0"
+        },
+        {
+          "path": "/car-brands/volkswagen-windscreen-replacement",
+          "newRecordId": "SCHEMA-B3CCF0F4"
+        },
+        {
+          "path": "/car-brands/volvo-windscreen-replacement",
+          "newRecordId": "SCHEMA-1137FE5E"
+        },
+        {
+          "path": "/blogs",
+          "newRecordId": "SCHEMA-09279DA3"
+        },
+        {
+          "path": "/blogs/windscreen-cost-and-insurance",
+          "newRecordId": "SCHEMA-5352F415"
+        },
+        {
+          "path": "/blogs/windscreen-repair-and-damage",
+          "newRecordId": "SCHEMA-F053E8F4"
+        },
+        {
+          "path": "/adas-windscreen-calibration-explained-why-your-car-needs-it-after-a-replacement",
+          "newRecordId": "SCHEMA-3553D1C0"
+        },
+        {
+          "path": "/can-you-tint-your-windows-with-a-spider-cracked-windshield",
+          "newRecordId": "SCHEMA-6CABFB00"
+        },
+        {
+          "path": "/common-causes-of-rear-car-window-cracks-in-sydney-heat-stress-impacts-seals",
+          "newRecordId": "SCHEMA-3FE6ED25"
+        },
+        {
+          "path": "/cracked-windscreen-in-2026-repair-vs-replacement-explained",
+          "newRecordId": "SCHEMA-54712D40"
+        },
+        {
+          "path": "/cracked-windscreen-nsw-is-it-legal-to-drive",
+          "newRecordId": "SCHEMA-77EB7EEB"
+        },
+        {
+          "path": "/does-insurance-cover-damages-from-a-rock-that-hit-the-windshield",
+          "newRecordId": "SCHEMA-8CD390AB"
+        },
+        {
+          "path": "/does-toyota-windscreen-replacement-improve-safety",
+          "newRecordId": "SCHEMA-1907A12C"
+        },
+        {
+          "path": "/do-truck-wiper-blades-affect-visibility-on-windshields",
+          "newRecordId": "SCHEMA-EDE012CE"
+        },
+        {
+          "path": "/fleet-heavy-vehicle-windscreen-maintenance-checklist-for-sydney-operators",
+          "newRecordId": "SCHEMA-66E2D6E9"
+        },
+        {
+          "path": "/how-does-a-hydrophobic-coating-improve-wet-weather-driving",
+          "newRecordId": "SCHEMA-40CAC242"
+        },
+        {
+          "path": "/how-does-sun-damage-to-a-car-impact-windshield-longevity-due-to-uv-radiation",
+          "newRecordId": "SCHEMA-023AB8F5"
+        },
+        {
+          "path": "/how-does-the-dot-matrix-on-car-windows-help-with-adhesion",
+          "newRecordId": "SCHEMA-9D57608B"
+        },
+        {
+          "path": "/how-do-you-prevent-a-crack-in-the-windscreen-of-your-car",
+          "newRecordId": "SCHEMA-4FED9DF4"
+        },
+        {
+          "path": "/how-do-you-prevent-your-windshield-from-cracking-in-winter",
+          "newRecordId": "SCHEMA-B65DA800"
+        },
+        {
+          "path": "/how-long-does-temporary-windscreen-repair-last",
+          "newRecordId": "SCHEMA-2F0A876B"
+        },
+        {
+          "path": "/how-often-should-you-replace-wipers-in-sydneys-conditions",
+          "newRecordId": "SCHEMA-1EFCA1CB"
+        },
+        {
+          "path": "/how-to-clean-a-car-windscreen",
+          "newRecordId": "SCHEMA-08FF8FA8"
+        },
+        {
+          "path": "/is-it-safe-to-drive-immediately-after-a-windshield-replacement",
+          "newRecordId": "SCHEMA-89AAE4E0"
+        },
+        {
+          "path": "/is-it-safe-to-drive-your-mazda-with-a-windscreen-crack",
+          "newRecordId": "SCHEMA-6A9BC1FD"
+        },
+        {
+          "path": "/is-it-safe-to-replace-your-own-cars-windshield-yourself",
+          "newRecordId": "SCHEMA-194309A4"
+        },
+        {
+          "path": "/is-tempered-glass-better-for-car-windscreen",
+          "newRecordId": "SCHEMA-D0D19495"
+        },
+        {
+          "path": "/nsw-roadworthy-rules-for-windscreen-damage-chip-and-crack-limits-explained",
+          "newRecordId": "SCHEMA-F7D25700"
+        },
+        {
+          "path": "/professional-vs-diy-truck-windscreen-replacement-in-2026-hidden-risks-that-blow-out-downtime",
+          "newRecordId": "SCHEMA-C4701E5A"
+        },
+        {
+          "path": "/rear-vs-front-auto-glass-what-damage-you-can-legally-drive-with-under-nsw-road-rules",
+          "newRecordId": "SCHEMA-37D08CDB"
+        },
+        {
+          "path": "/repair-or-replace-what-car-owners-need-to-know-about-chip-windscreen-decisions-in-2026",
+          "newRecordId": "SCHEMA-A60F0B1F"
+        },
+        {
+          "path": "/sydneys-sudden-temperature-swings-why-small-windscreen-chips-spread-overnight",
+          "newRecordId": "SCHEMA-181F1B47"
+        },
+        {
+          "path": "/sydney-windscreen-damage-explained-repairable-or-beyond-saving",
+          "newRecordId": "SCHEMA-2EB4BB1B"
+        },
+        {
+          "path": "/top-5-myths-sydney-drivers-still-believe-about-windscreen-repair-vs-replacement-in-2026",
+          "newRecordId": "SCHEMA-3142BA7E"
+        },
+        {
+          "path": "/truck-windscreen-repair-vs-replacement-a-decision-checklist-for-fleet-operators",
+          "newRecordId": "SCHEMA-54531795"
+        },
+        {
+          "path": "/what-affects-windscreen-replacement-cost-in-sydney-a-2026-price-guide",
+          "newRecordId": "SCHEMA-BA24621C"
+        },
+        {
+          "path": "/what-are-the-best-windscreen-covers-to-prevent-summer-damage",
+          "newRecordId": "SCHEMA-2D8DCF75"
+        },
+        {
+          "path": "/what-are-the-common-mistakes-in-diy-windscreen-replacement",
+          "newRecordId": "SCHEMA-EB8E1468"
+        },
+        {
+          "path": "/what-are-the-risks-of-delaying-a-truck-windscreen-replacement",
+          "newRecordId": "SCHEMA-D6A2514A"
+        },
+        {
+          "path": "/what-are-the-risks-of-fitting-a-windscreen-incorrectly",
+          "newRecordId": "SCHEMA-AC14CE75"
+        },
+        {
+          "path": "/what-causes-a-car-back-window-to-shatter",
+          "newRecordId": "SCHEMA-9198ABBD"
+        },
+        {
+          "path": "/what-causes-truck-windscreens-to-crack-road-vibration-debris-and-stress-points-explained-sydney",
+          "newRecordId": "SCHEMA-62692731"
+        },
+        {
+          "path": "/what-causes-truck-windshield-fogging-problems",
+          "newRecordId": "SCHEMA-1933941D"
+        },
+        {
+          "path": "/what-enhances-truck-windshield-durability-in-adverse-weather",
+          "newRecordId": "SCHEMA-1B9BCDFF"
+        },
+        {
+          "path": "/what-is-this-weird-pattern-on-the-back-windshield",
+          "newRecordId": "SCHEMA-34121805"
+        },
+        {
+          "path": "/what-materials-are-best-for-durable-truck-windscreen-sun-shades",
+          "newRecordId": "SCHEMA-959E00C4"
+        },
+        {
+          "path": "/what-should-you-check-after-replacing-a-nissan-windscreen",
+          "newRecordId": "SCHEMA-5F5B6918"
+        },
+        {
+          "path": "/what-should-you-do-if-your-windscreen-is-leaking",
+          "newRecordId": "SCHEMA-03B6A553"
+        },
+        {
+          "path": "/what-type-of-windscreen-damage-leads-to-full-replacement",
+          "newRecordId": "SCHEMA-A9D0634F"
+        },
+        {
+          "path": "/what-types-of-windshield-damage-are-eligible-for-repair",
+          "newRecordId": "SCHEMA-4EF11AFF"
+        },
+        {
+          "path": "/what-wears-out-windshield-wipers",
+          "newRecordId": "SCHEMA-10C3B3B6"
+        },
+        {
+          "path": "/which-diy-cleaner-is-safe-for-windshields",
+          "newRecordId": "SCHEMA-2A1318E5"
+        },
+        {
+          "path": "/which-windscreen-solutions-are-best-for-replacement",
+          "newRecordId": "SCHEMA-CB048336"
+        },
+        {
+          "path": "/why-back-windows-shatter-common-causes-in-sydney-and-how-to-reduce-the-risk",
+          "newRecordId": "SCHEMA-466D35B4"
+        },
+        {
+          "path": "/why-does-a-windscreen-tend-to-fog-up-after-cleaning",
+          "newRecordId": "SCHEMA-7E7CD449"
+        },
+        {
+          "path": "/why-does-your-windscreen-make-noise-while-driving",
+          "newRecordId": "SCHEMA-7875B136"
+        },
+        {
+          "path": "/why-is-adas-windscreen-calibration-necessary",
+          "newRecordId": "SCHEMA-E8BB7A80"
+        },
+        {
+          "path": "/why-professional-windscreen-replacement-matters-for-safety",
+          "newRecordId": "SCHEMA-CC0A65FC"
+        },
+        {
+          "path": "/why-truck-windscreens-crack-faster-on-australian-motorways-and-what-you-can-do-about-it",
+          "newRecordId": "SCHEMA-ADC45EBD"
+        },
+        {
+          "path": "/why-windscreen-damage-spreads-faster-in-sydney-weather-heat-storms-and-road-vibration",
+          "newRecordId": "SCHEMA-86F607CD"
+        },
+        {
+          "path": "/will-insurance-cover-a-cracked-windscreen",
+          "newRecordId": "SCHEMA-4CF6755A"
+        },
+        {
+          "path": "/windscreen-repair-vs-replacement-how-damage-size-position-and-glass-type-affect-the-decision",
+          "newRecordId": "SCHEMA-5C6FAFCE"
+        },
+        {
+          "path": "/your-car-window-is-always-blurry-how-do-you-fix-it",
+          "newRecordId": "SCHEMA-DB14A08F"
+        }
+      ]
+    }
+  ]
+}
