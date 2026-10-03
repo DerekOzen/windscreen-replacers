@@ -240,5 +240,71 @@
     "createdBy": "derek",
     "updatedAt": "2026-10-03T00:09:36.595Z",
     "updatedBy": "derek"
+  },
+  {
+    "id": "formmurmy38t",
+    "fingerprint": "dropdown|service;email|email;paragraph|message;phone|phone;text|name;text|suburb",
+    "name": "Contact form",
+    "fields": [
+      {
+        "id": "f7ncddp",
+        "kind": "text",
+        "label": "Name *",
+        "name": "name",
+        "required": true
+      },
+      {
+        "id": "flfnama",
+        "kind": "phone",
+        "label": "Phone *",
+        "name": "phone",
+        "required": true
+      },
+      {
+        "id": "fv8c725",
+        "kind": "email",
+        "label": "Email *",
+        "name": "email",
+        "required": true
+      },
+      {
+        "id": "fm9vt3w",
+        "kind": "text",
+        "label": "Suburb *",
+        "name": "suburb",
+        "required": true,
+        "placeholder": "e.g. Parramatta"
+      },
+      {
+        "id": "fla87wv",
+        "kind": "dropdown",
+        "label": "Service *",
+        "name": "service",
+        "required": true,
+        "options": [
+          "Please choose",
+          "Windscreen replacement",
+          "Windscreen or chip repair",
+          "Truck or fleet windscreen",
+          "Rear window replacement",
+          "Car side window replacement",
+          "Windscreen seal replacement",
+          "Wiper blade replacement",
+          "Not sure, please advise"
+        ]
+      },
+      {
+        "id": "fsx2q9p",
+        "kind": "paragraph",
+        "label": "Vehicle and damage details",
+        "name": "message",
+        "required": true,
+        "placeholder": "Make, model, year and what's damaged"
+      }
+    ],
+    "createdAt": "2026-10-03T00:10:09.005Z",
+    "createdBy": "derek",
+    "updatedAt": "2026-10-03T00:10:09.005Z",
+    "updatedBy": "derek"
   }
 ]
