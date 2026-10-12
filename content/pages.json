@@ -10,11 +10,13 @@
     "headerPartId": "header-1",
     "footerPartId": "footer-1",
     "status": "published",
-    "updatedAt": "2026-09-24T01:19:54.804Z",
+    "updatedAt": "2026-10-12T06:04:36.198Z",
     "updatedBy": "sebastian",
     "createdAt": "2026-09-18T02:01:05.298Z",
     "createdBy": "joshua",
-    "isHome": true
+    "isHome": true,
+    "featuredImage": "/uploads/featured-home-ukivk.jpg",
+    "featuredImageAlt": "Sydney's Mobile Windscreen Specialists"
   },
   {
     "id": "pg-3",
