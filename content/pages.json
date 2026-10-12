@@ -67,9 +67,11 @@
     "status": "published",
     "createdAt": "2026-09-21T00:47:36.060Z",
     "createdBy": "joshua",
-    "updatedAt": "2026-09-21T02:47:38.530Z",
-    "updatedBy": "joshua",
-    "isBlogIndex": false
+    "updatedAt": "2026-10-12T06:06:07.564Z",
+    "updatedBy": "sebastian",
+    "isBlogIndex": false,
+    "featuredImage": "/uploads/featured-windscreen-guides-articles-windscreen-replacers-umhqk.jpg",
+    "featuredImageAlt": "Windscreen Guides & Articles"
   },
   {
     "id": "pg-6",
