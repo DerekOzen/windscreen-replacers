@@ -3220,5 +3220,21 @@
     "updatedAt": "2026-10-13T22:16:50.134Z",
     "updatedBy": "gabriel",
     "isHome": false
+  },
+  {
+    "id": "pg-243",
+    "path": "/how-long-does-a-windscreen-replacement-take",
+    "type": "post",
+    "title": "How Long Does a Windscreen Replacement Take? | Windscreen Replacers",
+    "seoTitle": "How Long Does a Windscreen Replacement Take? | Windscreen Replacers",
+    "seoDescription": "Fit time is usually 60 to 90 minutes, but the adhesive cure is the part to plan around. What changes the timing, and what safe drive-away time means.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "createdAt": "2026-10-13T22:17:55.092Z",
+    "createdBy": "gabriel",
+    "updatedAt": "2026-10-13T22:17:55.092Z",
+    "updatedBy": "gabriel"
   }
 ]
