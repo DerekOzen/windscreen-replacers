@@ -3237,5 +3237,53 @@
     "updatedAt": "2026-10-13T22:35:49.663Z",
     "updatedBy": "gabriel",
     "isHome": false
+  },
+  {
+    "id": "pg-244",
+    "path": "/what-decides-the-cost-of-adas-calibration",
+    "type": "post",
+    "title": "What Decides the Cost of ADAS Calibration? | Windscreen Replacers",
+    "seoTitle": "What Decides the Cost of ADAS Calibration? | Windscreen Replacers",
+    "seoDescription": "Five things move the number: which systems your car has, static or dynamic calibration, the setup the make specifies, one visit or two, and whether it passes first time.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "createdAt": "2026-10-13T22:38:39.323Z",
+    "createdBy": "gabriel",
+    "updatedAt": "2026-10-13T22:38:39.323Z",
+    "updatedBy": "gabriel"
+  },
+  {
+    "id": "pg-245",
+    "path": "/what-is-built-into-a-modern-windscreen",
+    "type": "post",
+    "title": "What Is Actually Built Into Your Windscreen? | Windscreen Replacers",
+    "seoTitle": "What Is Actually Built Into Your Windscreen? | Windscreen Replacers",
+    "seoDescription": "Rain sensors, cameras, heating elements, acoustic layers and that dotted black band. What each one does, and how to tell what your own car has.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "createdAt": "2026-10-13T22:38:39.323Z",
+    "createdBy": "gabriel",
+    "updatedAt": "2026-10-13T22:38:39.323Z",
+    "updatedBy": "gabriel"
+  },
+  {
+    "id": "pg-246",
+    "path": "/how-long-does-a-windscreen-replacement-take",
+    "type": "post",
+    "title": "How Long Does a Windscreen Replacement Take? | Windscreen Replacers",
+    "seoTitle": "How Long Does a Windscreen Replacement Take? | Windscreen Replacers",
+    "seoDescription": "Fit time is usually 60 to 90 minutes, but the adhesive cure is the part to plan around. What changes the timing, and what safe drive-away time means.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "createdAt": "2026-10-13T22:38:39.323Z",
+    "createdBy": "gabriel",
+    "updatedAt": "2026-10-13T22:38:39.323Z",
+    "updatedBy": "gabriel"
   }
 ]
