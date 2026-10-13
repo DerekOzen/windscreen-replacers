@@ -3251,8 +3251,10 @@
     "status": "published",
     "createdAt": "2026-10-13T22:38:39.323Z",
     "createdBy": "gabriel",
-    "updatedAt": "2026-10-13T22:41:51.954Z",
-    "updatedBy": "gabriel"
+    "updatedAt": "2026-10-13T22:56:23.196Z",
+    "updatedBy": "gabriel",
+    "featuredImage": "/uploads/what-decides-the-cost-of-adas-calibratio-380a8d75.jpg",
+    "featuredImageAlt": "ADAS calibration camera behind a car windscreen with a calibration target in a workshop"
   },
   {
     "id": "pg-245",
