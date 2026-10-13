@@ -3269,8 +3269,10 @@
     "status": "published",
     "createdAt": "2026-10-13T22:38:39.323Z",
     "createdBy": "gabriel",
-    "updatedAt": "2026-10-13T22:46:49.879Z",
-    "updatedBy": "gabriel"
+    "updatedAt": "2026-10-13T22:59:51.006Z",
+    "updatedBy": "gabriel",
+    "featuredImage": "/uploads/what-is-actually-built-into-your-windscr-32a1e3c6.jpg",
+    "featuredImageAlt": "Modern windscreen showing laminated glass layers, sensors, camera housing and heating elements"
   },
   {
     "id": "pg-246",
