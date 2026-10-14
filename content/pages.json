@@ -3303,10 +3303,10 @@
     "layout": "mockup",
     "headerPartId": "header-1",
     "footerPartId": "footer-1",
-    "status": "draft",
+    "status": "published",
     "createdAt": "2026-10-14T00:49:50.746Z",
     "createdBy": "gabriel",
-    "updatedAt": "2026-10-14T00:49:50.746Z",
+    "updatedAt": "2026-10-14T00:51:35.535Z",
     "updatedBy": "gabriel"
   }
 ]
