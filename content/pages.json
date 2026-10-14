@@ -64,14 +64,15 @@
     "layout": "mockup",
     "headerPartId": "header-1",
     "footerPartId": "footer-1",
-    "status": "published",
+    "status": "deleted",
     "createdAt": "2026-09-21T00:47:36.060Z",
     "createdBy": "joshua",
-    "updatedAt": "2026-10-12T06:06:07.564Z",
-    "updatedBy": "sebastian",
+    "updatedAt": "2026-10-14T00:47:58.661Z",
+    "updatedBy": "gabriel",
     "isBlogIndex": false,
     "featuredImage": "/uploads/featured-windscreen-guides-articles-windscreen-replacers-umhqk.jpg",
-    "featuredImageAlt": "Windscreen Guides & Articles"
+    "featuredImageAlt": "Windscreen Guides & Articles",
+    "isHome": false
   },
   {
     "id": "pg-6",
