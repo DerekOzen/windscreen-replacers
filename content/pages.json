@@ -3292,5 +3292,21 @@
     "updatedBy": "joshua",
     "featuredImage": "/uploads/how-long-does-a-windscreen-replacement-a-0c2f90a9.jpg",
     "featuredImageAlt": " Windscreen replacement on a modern car with a newly fitted front windscreen"
+  },
+  {
+    "id": "pg-247",
+    "path": "/blogs",
+    "type": "post",
+    "title": "Windscreen Guides & Articles | Windscreen Replacers",
+    "seoTitle": "Windscreen Guides & Articles | Windscreen Replacers",
+    "seoDescription": "Plain-English guides on windscreen repair and replacement, NSW road rules, ADAS calibration, insurance and what auto glass actually costs in Sydney.",
+    "layout": "mockup",
+    "headerPartId": "header-1",
+    "footerPartId": "footer-1",
+    "status": "draft",
+    "createdAt": "2026-10-14T00:49:50.746Z",
+    "createdBy": "gabriel",
+    "updatedAt": "2026-10-14T00:49:50.746Z",
+    "updatedBy": "gabriel"
   }
 ]
