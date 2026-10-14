@@ -3301,12 +3301,12 @@
     "seoTitle": "Windscreen Guides & Articles | Windscreen Replacers",
     "seoDescription": "Plain-English guides on windscreen repair and replacement, NSW road rules, ADAS calibration, insurance and what auto glass actually costs in Sydney.",
     "layout": "mockup",
-    "headerPartId": "header-1",
+    "headerPartId": null,
     "footerPartId": "footer-1",
     "status": "published",
     "createdAt": "2026-10-14T00:49:50.746Z",
     "createdBy": "gabriel",
-    "updatedAt": "2026-10-14T00:51:35.535Z",
+    "updatedAt": "2026-10-14T00:54:18.254Z",
     "updatedBy": "gabriel"
   }
 ]
