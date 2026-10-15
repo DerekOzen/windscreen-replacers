@@ -1179,9 +1179,11 @@
     "status": "published",
     "createdAt": "2026-09-21T01:28:16.449Z",
     "createdBy": "joshua",
-    "updatedAt": "2026-09-21T01:29:24.384Z",
-    "updatedBy": "joshua",
-    "noindex": true
+    "updatedAt": "2026-10-15T23:55:40.829Z",
+    "updatedBy": "sebastian",
+    "noindex": true,
+    "featuredImage": "/uploads/featured-thank-you-windscreen-replacers-75i6e.jpg",
+    "featuredImageAlt": "Thanks. We have your details"
   },
   {
     "id": "pg-120",
